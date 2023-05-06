@@ -1,7 +1,6 @@
 const app = require("./src/app/app");
 const config = require('./src/config/config')
-//TODO INCORPORARA BASE DE DATOS
-//TODO AGREGAR PORT EN VARIABLE GLOBAL
+
 
 const connectBD = require('./src/dbs/mongodb/connectMongo')
 async function activeServer() {
