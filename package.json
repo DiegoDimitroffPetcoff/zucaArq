@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.1.0",
+    "nodemon": "^2.0.22"
+  },
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "name": "azucaarct",
+  "version": "1.0.0",
+  "description": "Backed service to handle the Zuca Arquitecture studio website and app",
+  "main": "server.js",
+  "keywords": [
+    "expressJS",
+    "nodeJs"
+  ],
+  "author": "Diego Dimitroff Petcoff",
+  "license": "ISC"
+}
