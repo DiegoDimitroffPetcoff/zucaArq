@@ -1,32 +1,46 @@
 const Project = require("../dbs/mongodb/models/projects");
-const crudProjectService = require("../services/crudProjectServices");
+const crudProjectService = require("../services/crudServicesProjects");
 
 createProject = async (req, res) => {
   try {
     const ProjectCreated = await crudProjectService.createProject(req.body);
     return res.json(ProjectCreated);
-  } catch (error) {  
+  } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
 
 getAllProjects = async (req, res) => {
   try {
-    const Allprojects = await Project.find();
+    const Allprojects = await crudProjectService.getProjects();
 
     return res.json(Allprojects);
   } catch (error) {
-
     return res.status(500).json({ message: error.message });
   }
 };
 
+//TODO GESTIONAR COMO ENCONTRAR UN PROJ MEDIANTE ID
 getProjectByID = async (req, res) => {
-  res.send("/searchByID");
+  try {
+    const Allprojects = await crudProjectService.getProjectById(req.params.id);
+
+    return res.json(Allprojects);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
 };
 
 editProject = async (req, res) => {
-  res.send("/edite patch");
+  try {
+    const projectEdited = await crudProjectService.editProject(
+      req.params.id,
+      req.body
+    );
+    return res.json(projectEdited);
+  } catch (error) {
+    return res.status(404).json({ message: "Project not found" });
+  }
 };
 
 deleteProject = async (req, res) => {

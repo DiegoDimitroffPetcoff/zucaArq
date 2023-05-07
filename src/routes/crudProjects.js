@@ -11,14 +11,14 @@ const {
     }= require ('../controllers/crudControllersProjects.js')
 
 
-//GET +++++++++++++++++++++++++++++++++++++++++++++++++
-router.get('/projects', getAllProjects );
-//GET BY ID+++++++++++++++++++++++++++++++++++++++++++
+
+    router.post('/project', createProject);
+    router.get('/projects', getAllProjects );
 router.get('/project/:id',getProjectByID);
 
 
-//todo POST CREATE+++++++++++++++++++++++++++++++++++++++++++++++++
-router.post('/project', createProject);
+
+
 
 
 
