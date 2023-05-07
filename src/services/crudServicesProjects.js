@@ -28,13 +28,14 @@ getProjectById = async (id) => {
 };
 
 editProject = async (id, update) => {
-  const updateProject = await Project.findByIdAndUpdate(id, update, {
+  return await Project.findByIdAndUpdate(id, update, {
     new: true,
   });
-  return updateProject;
 };
 
-deleteProject = async (data) => {};
+deleteProject = async (id, d) => {
+  return await Project.findByIdAndDelete(id, d);
+};
 
 module.exports = {
   createProject,
