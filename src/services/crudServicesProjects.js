@@ -3,7 +3,7 @@ const Project = require("../dbs/mongodb/models/projects");
 createProject = async (data) => {
 
   const { name, description, price } = data;
-
+console.log(data);
   if (!name) return res.status(404).json({ message: "Name is required!" });
   try {
     const newProject = new Project({
