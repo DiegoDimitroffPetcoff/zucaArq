@@ -3,6 +3,7 @@ const crudProjectService = require("../services/crudServicesProjects");
 
 createProject = async (req, res) => {
   try {
+    console.log(req.files);
     const ProjectCreated = await crudProjectService.createProject(req.body);
     return res.json(ProjectCreated);
   } catch (error) {
@@ -12,6 +13,7 @@ createProject = async (req, res) => {
 
 getAllProjects = async (req, res) => {
   try {
+
     const Allprojects = await crudProjectService.getProjects();
 
     return res.json(Allprojects);

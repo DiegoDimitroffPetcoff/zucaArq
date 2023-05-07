@@ -1,8 +1,7 @@
 const Project = require("../dbs/mongodb/models/projects");
 
 createProject = async (data) => {
-  console.log(" data desde service");
-  console.log(data);
+
   const { name, description, price } = data;
 
   if (!name) return res.status(404).json({ message: "Name is required!" });
@@ -28,6 +27,7 @@ getProjectById = async (id) => {
 };
 
 editProject = async (id, update) => {
+
   return await Project.findByIdAndUpdate(id, update, {
     new: true,
   });

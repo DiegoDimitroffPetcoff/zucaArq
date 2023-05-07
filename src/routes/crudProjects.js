@@ -13,8 +13,6 @@ router.post("/project", createProject);
 router.get("/projects", getAllProjects);
 router.get("/project/:id", getProjectByID);
 router.patch("/project/:id", editProject);
-
-//todo DELETE +++++++++++++++++++++++++++++++++++++++++++++++++
 router.delete("/project/:id", deleteProject);
 
 module.exports = router;
