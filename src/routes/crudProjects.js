@@ -1,5 +1,12 @@
 const { Router } = require("express");
 const router = Router();
+const fileUpload = require("express-fileupload");
+router.use(
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: "./uploads",
+  })
+);
 
 const {
   createProject,
@@ -7,6 +14,7 @@ const {
   getProjectByID,
   editProject,
   deleteProject,
+  upload3,
 } = require("../controllers/crudControllersProjects.js");
 
 router.post("/project", createProject);

@@ -1,13 +1,8 @@
-const Project = require("../dbs/mongodb/models/projects");
 const crudProjectService = require("../services/crudServicesProjects");
 
 createProject = async (req, res) => {
-  
   try {
-console.log(req.body);
-console.log(req.files);
-
-    const ProjectCreated = await crudProjectService.createProject(req.body);
+    const ProjectCreated = await crudProjectService.createProject(req);
     return res.json(ProjectCreated);
   } catch (error) {
     console.log(error);
@@ -17,7 +12,6 @@ console.log(req.files);
 
 getAllProjects = async (req, res) => {
   try {
-
     const Allprojects = await crudProjectService.getProjects();
 
     return res.json(Allprojects);
@@ -44,7 +38,7 @@ editProject = async (req, res) => {
       req.body
     );
 
-    if(!projectEdited){
+    if (!projectEdited) {
       return res.status(404).json({ message: "Project not found" });
     }
     return res.json(projectEdited);
@@ -60,15 +54,14 @@ deleteProject = async (req, res) => {
         req.params.id,
         req.body
       );
-      if(!projectEdited){
+      if (!projectEdited) {
         return res.status(404).json({ message: "Project not found" });
       }
       return res.json(projectEdited);
     } catch (error) {
       return res.status(500).json({ message: error.message });
-    
     }
-  };
+  }
 };
 
 module.exports = {

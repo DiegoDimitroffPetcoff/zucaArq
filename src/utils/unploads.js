@@ -1,6 +1,5 @@
-const fileUpload = require("express-fileupload");
-
 function upload(data) {
+  //TODO falta validacion en caso de que se suba la imagen con otro nombre que no sea "file"
   if (!data.files) {
     return "No files were uploaded.";
   }

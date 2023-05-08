@@ -36,7 +36,8 @@ app.post("/upload", (req, res) => {
 });
 
 app.post("/upload2", async (req, res) => {
-  console.log(await unpload(req));
+  console.log(req.files);
+  console.log(await upload(req));
   let data = upload(req);
   res.send(data);
 });

@@ -1,15 +1,18 @@
 const Project = require("../dbs/mongodb/models/projects");
+const upload = require("../utils/unploads");
 
 createProject = async (data) => {
+  upload(data);
+  const { name, description, price } = data.body;
 
-  const { name, description, price } = data;
-console.log(data);
-  if (!name) return res.status(404).json({ message: "Name is required!" });
+  let image = data.files;
+  if (!name) return "message: Name is required";
   try {
     const newProject = new Project({
       name,
       description,
       price,
+      image,
     });
     const projectSaved = await newProject.save();
     return projectSaved;
@@ -27,7 +30,6 @@ getProjectById = async (id) => {
 };
 
 editProject = async (id, update) => {
-
   return await Project.findByIdAndUpdate(id, update, {
     new: true,
   });
