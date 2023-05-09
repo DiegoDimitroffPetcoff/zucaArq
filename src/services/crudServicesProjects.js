@@ -1,11 +1,23 @@
 const Project = require("../dbs/mongodb/models/projects");
 const upload = require("../utils/unploads");
+const uploadClaudinaryImage = require("../utils/cloudinary.js");
 
 createProject = async (data) => {
-  upload(data);
+  //upload function is gonna check if there are any imagen to upload
+  //if there are not any image is gonna return:"No files has benn uploaded."
+  let image = upload(data);
+
+  
   const { name, description, price } = data.body;
 
-  let image = data.files;
+
+  //if data.files exist... is gonna be uploded on claudinary
+  if (data.files?.file.tempFilePath) {
+    let result = await uploadClaudinaryImage(data.files.file.tempFilePath);
+    //here, the image is gonna be replace by the imagen's info
+    image = result;
+  }
+
   if (!name) return "message: Name is required";
   try {
     const newProject = new Project({
