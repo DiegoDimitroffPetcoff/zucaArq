@@ -48,6 +48,7 @@ editProject = async (req, res) => {
 };
 
 deleteProject = async (req, res) => {
+
   {
     try {
       const projectEdited = await crudProjectService.deleteProject(
@@ -57,6 +58,7 @@ deleteProject = async (req, res) => {
       if (!projectEdited) {
         return res.status(404).json({ message: "Project not found" });
       }
+
       return res.json(projectEdited);
     } catch (error) {
       return res.status(500).json({ message: error.message });

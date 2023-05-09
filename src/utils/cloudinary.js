@@ -10,4 +10,8 @@ cloudinary.config({
  async function uploadClaudinaryImage(filePath) {
   return await cloudinary.uploader.upload(filePath, { folder: "zucaArq" });
 }
-module.exports = uploadClaudinaryImage;
+
+async function deleteClaudinaryImage(publicID) {
+    return await cloudinary.uploader.destroy(publicID);
+  }
+module.exports ={ uploadClaudinaryImage, deleteClaudinaryImage}
