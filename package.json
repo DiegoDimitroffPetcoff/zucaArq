@@ -10,7 +10,8 @@
     "nodemon": "^2.0.22"
   },
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "main": "node server.js"
   },
   "name": "azucaarct",
   "version": "1.0.0",
