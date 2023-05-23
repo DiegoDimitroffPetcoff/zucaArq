@@ -1,61 +1,63 @@
-const Project = require("../dbs/mongodb/models/profile");
+const Profile = require("../dbs/mongodb/models/profile");
 const upload = require("../utils/unploads");
 const {
-  uploadClaudinaryImage,
-  deleteClaudinaryImage,
+  uploadClaudinaryImageProfile,
+  deleteClaudinaryImageProfile,
 } = require("../utils/cloudinary.js");
 const fsExtra = require("fs-extra");
 
 createProfile = async (data) => {
+console.log(data);
   //upload function is gonna check if there are any imagen to upload
   //if there are not any image is gonna return:"No files has benn uploaded."
   let image = upload(data);
-  const { name, description, price } = data.body;
+  const { title, description } = data.body;
   //if data.files exist... is gonna be uploded on claudinary
   if (data.files?.file.tempFilePath) {
-    let result = await uploadClaudinaryImage(data.files.file.tempFilePath);
+    let result = await uploadClaudinaryImageProfile(
+      data.files.file.tempFilePath
+    );
     //here, the image is gonna be replace by the imagen's info
     image = result;
     //here I'm gonna delete the file to do not save the file on the uploads folder
     await fsExtra.unlink(data.files.file.tempFilePath);
   }
-  if (!name) return "message: Name is required";
+  if (!title) return "message: Title is required";
   try {
-    const newProject = new Project({
-      name,
+    const newProfile = new Profile({
+      title,
       description,
-      price,
+
       image,
     });
-    const projectSaved = await newProject.save();
-    return projectSaved;
+    const profileSaved = await newProfile.save();
+    return profileSaved;
   } catch (error) {
     return error;
   }
 };
 
 getProfiles = async () => {
-  return await Project.find();
+  return await Profile.find();
 };
 
 getProfileById = async (id) => {
-  return await Project.findById(id);
+  return await Profile.findById(id);
 };
 
 editProfile = async (id, update) => {
-  return await Project.findByIdAndUpdate(id, update, {
+  return await Profile.findByIdAndUpdate(id, update, {
     new: true,
   });
 };
 
 deleteProfile = async (id, d) => {
-  let imagenToDelete = await Project.findById(id);
+  let imagenToDelete = await Profile.findById(id);
   if (imagenToDelete.image.public_id) {
-    await deleteClaudinaryImage(imagenToDelete.image.public_id);
-
+    await deleteClaudinaryImageProfile(imagenToDelete.image.public_id);
   }
 
-  return await Project.findByIdAndDelete(id, d);
+  return await Profile.findByIdAndDelete(id, d);
 };
 
 module.exports = {

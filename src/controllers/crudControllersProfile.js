@@ -1,8 +1,8 @@
-const crudProjectService = require("../services/crudServicesProfiles");
+const crudProfileService = require("../services/crudServicesProfiles");
 
 createProfile = async (req, res) => {
   try {
-    const ProfileCreated = await crudProjectService.createProfile(req);
+    const ProfileCreated = await crudProfileService.createProfile(req);
     return res.json(ProfileCreated);
   } catch (error) {
     console.log(error);
@@ -12,7 +12,7 @@ createProfile = async (req, res) => {
 
 getAllProfiles = async (req, res) => {
   try {
-    const AllProfiles = await crudProjectService.getProfiles();
+    const AllProfiles = await crudProfileService.getProfiles();
 
     return res.json(AllProfiles);
   } catch (error) {
@@ -23,7 +23,7 @@ getAllProfiles = async (req, res) => {
 //TODO GESTIONAR COMO ENCONTRAR UN PROJ MEDIANTE ID
 getProfileByID = async (req, res) => {
   try {
-    const AllProfiles = await crudProjectService.getProfileById(req.params.id);
+    const AllProfiles = await crudProfileService.getProfileById(req.params.id);
 
     return res.json(AllProfiles);
   } catch (error) {
@@ -48,7 +48,6 @@ editProfile = async (req, res) => {
 };
 
 deleteProfile = async (req, res) => {
-
   {
     try {
       const ProfileEdited = await crudProjectService.deleteProfile(
