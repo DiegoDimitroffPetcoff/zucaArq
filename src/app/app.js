@@ -5,12 +5,15 @@ const upload = require("../utils/unploads");
 
 const indexRoute = require("../routes/indexRoute");
 const routerProjects = require("../routes/crudProjects");
+const routerProfile = require("../routes/crudProfile");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(indexRoute);
 app.use(routerProjects);
+app.use(routerProfile);
+
 
 app.use(
   fileUpload({
