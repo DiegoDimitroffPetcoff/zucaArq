@@ -33,13 +33,13 @@ getProfileByID = async (req, res) => {
 
 editProfile = async (req, res) => {
   try {
-    const ProfileEdited = await crudProjectService.editProfile(
+    const ProfileEdited = await crudProfileService.editProfile(
       req.params.id,
       req.body
     );
 
     if (!ProfileEdited) {
-      return res.status(404).json({ message: "Project not found" });
+      return res.status(404).json({ message: "Profile not found" });
     }
     return res.json(ProfileEdited);
   } catch (error) {
