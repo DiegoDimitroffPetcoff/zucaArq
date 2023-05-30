@@ -14,7 +14,7 @@ const projectSchema = mongoose.Schema(
       type: Number,
     },
     image: {
-      type: Object,
+      type: Array,
    //   pulic_id: String,
      // secure_url: String,
     },

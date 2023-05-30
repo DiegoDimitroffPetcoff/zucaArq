@@ -51,6 +51,7 @@ deleteProject = async (req, res) => {
 
   {
     try {
+   
       const projectEdited = await crudProjectService.deleteProject(
         req.params.id,
         req.body
