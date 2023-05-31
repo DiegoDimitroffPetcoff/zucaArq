@@ -5,6 +5,7 @@ createProject = async (req, res) => {
     const ProjectCreated = await crudProjectService.createProject(req);
     return res.json(ProjectCreated);
   } catch (error) {
+    console.log("ERROR");
     console.log(error);
     return res.status(500).json(error);
   }
@@ -48,10 +49,8 @@ editProject = async (req, res) => {
 };
 
 deleteProject = async (req, res) => {
-
   {
     try {
-   
       const projectEdited = await crudProjectService.deleteProject(
         req.params.id,
         req.body

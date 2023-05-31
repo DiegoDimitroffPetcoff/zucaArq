@@ -3,14 +3,15 @@ const upload = require("../utils/unploads");
 const {
   uploadClaudinaryImage,
   deleteClaudinaryImage,
-  deleteClaudinaryImages
+  deleteClaudinaryImages,
 } = require("../utils/cloudinary.js");
 const fsExtra = require("fs-extra");
 
 createProject = async (data) => {
   //upload function is gonna check if there are any imagen to upload
   //if there are not any image is gonna return:"No files has benn uploaded."
-//todo falta eliminar las imagenes del local y hacer validaciones cuando no se agreguen imagenes y cuando se agregue una sola
+  //todo falta eliminar las imagenes del local y hacer validaciones cuando no se agreguen imagenes y cuando se agregue una sola
+
   let objeto = data.files;
 
   const tempFilePaths = Object.values(objeto).map((file) => file.tempFilePath);
@@ -63,12 +64,10 @@ deleteProject = async (id, d) => {
   let imagenToDelete = await Project.findById(id);
 
   if (imagenToDelete.image) {
- 
     await deleteClaudinaryImages(imagenToDelete.image);
   }
 
- return await Project.findByIdAndDelete(id, d);
-
+  return await Project.findByIdAndDelete(id, d);
 };
 
 module.exports = {
