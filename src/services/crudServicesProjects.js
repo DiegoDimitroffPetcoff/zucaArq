@@ -10,7 +10,7 @@ const fsExtra = require("fs-extra");
 createProject = async (data) => {
   //upload function is gonna check if there are any imagen to upload
   //if there are not any image is gonna return:"No files has benn uploaded."
-  //todo falta eliminar las imagenes del local y hacer validaciones cuando no se agreguen imagenes y cuando se agregue una sola
+  //todo falta eliminar las imagenes del local 
 
   let objeto = data.files;
 
