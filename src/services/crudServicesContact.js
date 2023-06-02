@@ -1,4 +1,4 @@
-const Contact = require("../dbs/mongodb/models/Contact");
+const Contact = require("../dbs/mongodb/models/contact");
 
 createContact = async (data) => {
   console.log(data.body);
@@ -23,9 +23,7 @@ getAllContacts = async () => {
   return await Contact.find();
 };
 
-getContactById = async (id) => {
-  return await Contact.findById(id);
-};
+
 
 editContact = async (id, update) => {
   return await Contact.findByIdAndUpdate(id, update, {
@@ -33,19 +31,12 @@ editContact = async (id, update) => {
   });
 };
 
-deleteContact = async (id, d) => {
-  let imagenToDelete = await Contact.findById(id);
-  if (imagenToDelete.image.public_id) {
-    await deleteClaudinaryImageContact(imagenToDelete.image.public_id);
-  }
 
-  return await Contact.findByIdAndDelete(id, d);
-};
 
 module.exports = {
   createContact,
   getAllContacts,
-  getContactById,
+
   editContact,
-  deleteContact,
+
 };
