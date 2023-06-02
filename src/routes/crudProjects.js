@@ -21,10 +21,18 @@ const {
   createProfile,
   getAllProfiles,
   getProfileByID,
-  editProfile,
-  deleteProfile,
+  editProfile
+  
  
 } = require("../controllers/crudControllersProfile.js");
+
+
+const {
+  createContact,
+  getAllContacts,
+  editContact
+ 
+} = require("../controllers/crudControllersContact.js");
 
 router.post("/project", createProject);
 router.get("/projects", getAllProjects);
@@ -39,5 +47,11 @@ router.get("/profile", getAllProfiles);
 router.get("/profile/:id", getProfileByID);
 router.patch("/profile/:id", editProfile);
 router.delete("/profile/:id", deleteProfile);
+
+
+router.post("/contact", createContact);
+router.get("/contact", getAllContacts);
+router.patch("/contact/:id", editContact);
+
 
 module.exports = router;
