@@ -10,7 +10,7 @@ const fsExtra = require("fs-extra");
 createProject = async (data) => {
   //upload function is gonna check if there are any imagen to upload
   //if there are not any image is gonna return:"No files has benn uploaded."
-  //todo falta eliminar las imagenes del local 
+  //todo falta eliminar las imagenes del local
 
   let objeto = data.files;
 
@@ -20,16 +20,20 @@ createProject = async (data) => {
 
   // let image = upload(data);
   const { name, description, price } = data.body;
-  //if data.files exist... is gonna be uploded on claudinary
-  // if (data.files?.file.tempFilePath) {
-  //  if (data.files?.file) {
+
   if (tempFilePaths) {
-    //   console.log(data.files?.file)
     let result = await uploadClaudinaryImage(tempFilePaths);
-    //here, the image is gonna be replace by the imagen's info
+
     image = result;
-    //here I'm gonna delete the file to do not save the file on the uploads folder
-    //  await fsExtra.unlink(data.files.file.tempFilePath);
+
+    for (imagen in data.files) {
+      try {
+        console.log(data.files[imagen].tempFilePath);
+        await fsExtra.unlink(data.files[imagen].tempFilePath);
+      } catch (error) {
+        throw error;
+      }
+    }
   }
   if (!name) return "message: Name is required";
   try {

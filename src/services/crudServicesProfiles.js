@@ -7,12 +7,11 @@ const {
 const fsExtra = require("fs-extra");
 
 createProfile = async (data) => {
-console.log(data);
+
   //upload function is gonna check if there are any imagen to upload
   //if there are not any image is gonna return:"No files has benn uploaded."
   let image = upload(data);
   const { title, description } = data.body;
-  //if data.files exist... is gonna be uploded on claudinary
   if (data.files?.file.tempFilePath) {
     let result = await uploadClaudinaryImageProfile(
       data.files.file.tempFilePath
@@ -20,7 +19,7 @@ console.log(data);
     //here, the image is gonna be replace by the imagen's info
     image = result;
     //here I'm gonna delete the file to do not save the file on the uploads folder
-    await fsExtra.unlink(data.files.file.tempFilePath);
+    await fsExtra.unlink(data.files.files);
   }
   if (!title) return "message: Title is required";
   try {
