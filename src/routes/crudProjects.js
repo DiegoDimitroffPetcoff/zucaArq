@@ -14,6 +14,7 @@ const {
   getProjectByID,
   editProject,
   deleteProject,
+  deleteImage,
   upload3,
 } = require("../controllers/crudControllersProjects.js");
 
@@ -39,6 +40,9 @@ router.get("/projects", getAllProjects);
 router.get("/project/:id", getProjectByID);
 router.patch("/project/:id", editProject);
 router.delete("/project/:id", deleteProject);
+
+router.patch("/image/:id", deleteImage);
+
 
 
 

@@ -66,10 +66,29 @@ deleteProject = async (req, res) => {
   }
 };
 
+deleteImage = async (req, res) => {
+  {
+    try {
+      const projectEdited = await crudProjectService.deleteImage(
+        req.params,
+        req.body
+      );
+      if (!projectEdited) {
+        return res.status(404).json({ message: "Project not found" });
+      }
+
+      return res.json(projectEdited);
+    } catch (error) {
+      return res.status(500).json({ message: error.message });
+    }
+  }
+};
+
 module.exports = {
   createProject,
   getAllProjects,
   getProjectByID,
   editProject,
   deleteProject,
+  deleteImage,
 };

@@ -31,11 +31,18 @@ async function uploadClaudinaryImageProfile(filePath) {
 async function deleteClaudinaryImage(publicID) {
   return await cloudinary.uploader.destroy(publicID);
 }
+
 //to delete severelas images
 async function deleteClaudinaryImages(images) {
-  //sicle for loop the images and delete one by one
-  for (let image of images) {
-    await cloudinary.uploader.destroy(image.public_id);
+  for (let data in images) {
+    const public_id = images[data].public_id;
+    cloudinary.uploader.destroy(public_id, (error, result) => {
+      if (error) {
+        console.error("Error al eliminar la imagen:", error);
+      } else {
+        console.log("La imagen se eliminó correctamente:", result);
+      }
+    });
   }
 }
 
