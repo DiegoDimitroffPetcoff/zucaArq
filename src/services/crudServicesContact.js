@@ -2,7 +2,18 @@ const Contact = require("../dbs/mongodb/models/contact");
 
 createContact = async (data) => {
   console.log(data.body);
-  const { email, adress, facebook, instagram, cellphone } = data.body;
+  const {
+    email,
+    adress,
+    facebook,
+    instagram,
+    cellphone,
+    emailText,
+    adressText,
+    facebookText,
+    instagramText,
+    cellphoneText,
+  } = data.body;
   if (!email) return "message: Email is required";
   try {
     const newContact = new Contact({
@@ -11,6 +22,11 @@ createContact = async (data) => {
       facebook,
       instagram,
       cellphone,
+      emailText,
+      adressText,
+      facebookText,
+      instagramText,
+      cellphoneText,
     });
     const ContactSaved = await newContact.save();
     return ContactSaved;
@@ -23,20 +39,15 @@ getAllContacts = async () => {
   return await Contact.find();
 };
 
-
-
 editContact = async (id, update) => {
   return await Contact.findByIdAndUpdate(id, update, {
     new: true,
   });
 };
 
-
-
 module.exports = {
   createContact,
   getAllContacts,
 
   editContact,
-
 };

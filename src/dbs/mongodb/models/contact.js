@@ -21,6 +21,26 @@ const contactSchema = mongoose.Schema({
     type: Number,
     trim: true,
   },
+  emailText: {
+    type: String,
+    trim: true,
+  },
+  adressText: {
+    type: String,
+    trim: true,
+  },
+  facebookText: {
+    type: String,
+    trim: true,
+  },
+  instagramText: {
+    type: String,
+    trim: true,
+  },
+  cellphoneText: {
+    type: Number,
+    trim: true,
+  },
 });
 
 module.exports = mongoose.model("contact", contactSchema);
