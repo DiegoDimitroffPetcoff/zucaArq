@@ -22,5 +22,8 @@
     "nodeJs"
   ],
   "author": "Diego Dimitroff Petcoff",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@flydotio/dockerfile": "^0.2.14"
+  }
 }

@@ -9,7 +9,7 @@ const connectBD = require("./src/dbs/mongodb/connectMongo");
 async function activeServer() {
   try {
     await connectBD();
-    app.listen(config.PORT || 8080);
+    app.listen(config.PORT || 3000);
 
 
     console.log("Server Active and listening");
